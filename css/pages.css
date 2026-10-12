@@ -263,3 +263,56 @@
   .resume-captage { top: auto; bottom: var(--esp-8); right: var(--esp-8); left: var(--esp-8); width: auto; }
   .etapes > li { padding-left: 0; padding-top: var(--esp-48); }
 }
+
+/* ============================================================
+   Page « CO₂ évité » (co2.html)
+   Bloc ajouté à la fin du fichier : il n'utilise que des classes
+   préfixées « co2- » et ne modifie aucun style existant.
+   ============================================================ */
+
+/* Compteur central */
+.co2-compteur { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: var(--esp-32); align-items: center; padding: var(--esp-32); }
+.co2-compteur > * + * { margin-top: 0; }
+.co2-compteur-cumul { border-left: 1px solid var(--bordure); padding-left: var(--esp-32); }
+.co2-compteur .co2-grand-chiffre {
+  margin-top: var(--esp-8); font-size: clamp(56px, 9vw, 112px); line-height: 1.05; font-weight: 600;
+  color: var(--bleu-nuit); letter-spacing: -0.02em;
+}
+.co2-compteur .co2-unite { margin-top: var(--esp-8); font-size: 16px; color: var(--texte-doux); }
+.co2-compteur .co2-chiffre-cumul {
+  margin-top: var(--esp-8); font-family: var(--police-mono); font-variant-numeric: tabular-nums;
+  font-size: clamp(36px, 5vw, 56px); line-height: 1.1; font-weight: 600; color: var(--action-actif);
+}
+.co2-unite-cumul { font-family: var(--police); font-size: 18px; font-weight: 400; color: var(--texte-doux); margin-left: var(--esp-8); }
+
+/* Équivalences */
+.co2-equivalences { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--esp-16); }
+.co2-equiv { padding: var(--esp-24); }
+.co2-equiv-icone {
+  display: inline-flex; align-items: center; justify-content: center; align-self: flex-start;
+  width: 44px; height: 44px; border-radius: 50%; margin-bottom: var(--esp-8);
+  background: var(--action-pale); color: var(--action-actif);
+}
+.co2-equiv .kpi-valeur { font-size: 36px; }
+
+/* Graphique et curseurs */
+.co2-graphique { height: 260px; }
+.co2-curseurs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--esp-32); }
+.co2-valeur-curseur { min-width: 148px; font-size: 16px; white-space: nowrap; }
+
+/* Lecture prudente et tableau repliable */
+.co2-prudence { align-items: flex-start; background: var(--bleu-pale); }
+.co2-prudence h2 { font-size: 18px; margin-bottom: var(--esp-8); }
+.co2-details summary { cursor: pointer; font-weight: 600; color: var(--action-actif); min-height: 44px; display: flex; align-items: center; }
+.co2-details[open] summary { margin-bottom: var(--esp-12); }
+
+@media (max-width: 1100px) {
+  .co2-curseurs { grid-template-columns: minmax(0, 1fr); gap: var(--esp-24); }
+}
+
+@media (max-width: 760px) {
+  .co2-compteur { grid-template-columns: minmax(0, 1fr); padding: var(--esp-24); gap: var(--esp-24); }
+  .co2-compteur-cumul { border-left: 0; padding-left: 0; border-top: 1px solid var(--bordure); padding-top: var(--esp-24); }
+  .co2-equivalences { grid-template-columns: minmax(0, 1fr); }
+  .co2-graphique { height: 300px; }
+}

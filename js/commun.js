@@ -148,7 +148,8 @@ var Commun = (function () {
       { id: "carte",      href: "carte.html",                       libelle: "Carte" },
       { id: "captage",    href: lienCaptage("captage", dernier),    libelle: "Fiche captage" },
       { id: "simulateur", href: lienCaptage("simulateur", dernier), libelle: "Simulateur" },
-      { id: "methode",    href: "methode.html",                     libelle: "Méthode" }
+      { id: "methode",    href: "methode.html",                     libelle: "Méthode" },
+      { id: "co2",        href: "co2.html",                         libelle: "CO₂ évité" }
     ];
 
     var liens = pages.map(function (p) {

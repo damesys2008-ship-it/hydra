@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CO₂ évité — Hydra, pilotage PFAS</title>
+  <meta name="description" content="Émissions de CO₂ évitées en détruisant sur place les déchets concentrés en PFAS plutôt qu'en les transportant vers un incinérateur éloigné.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body data-page="co2">
+
+  <div id="entete-site"></div>
+
+  <main class="conteneur principal" id="contenu">
+
+    <div class="titre-page">
+      <p class="overline">CO₂ évité</p>
+      <h1>CO₂ évité grâce à la destruction sur site</h1>
+      <p>Le traitement de l'eau laisse des résidus concentrés en PFAS, qu'il faut ensuite détruire. La filière classique
+        les envoie par camion vers un incinérateur éloigné, qui les brûle à plus de 1 100 °C avec un combustible d'appoint.</p>
+      <p>L'unité mobile Elixir (ArianeGroup) les détruit sur place, à l'électricité. Cette page chiffre la différence et
+        vous laisse modifier les hypothèses.</p>
+    </div>
+
+    <!-- Le compteur : élément central de la page -->
+    <section class="cadre co2-compteur" aria-labelledby="titre-compteur">
+      <h2 class="sr-only" id="titre-compteur">Compteur de CO₂ évité</h2>
+      <div class="co2-compteur-annuel">
+        <p class="overline">Émissions évitées chaque année</p>
+        <p class="co2-grand-chiffre"><span class="num" id="co2-evite-an">0</span></p>
+        <p class="co2-unite">tonnes de CO₂ équivalent par an</p>
+      </div>
+      <div class="co2-compteur-cumul">
+        <p class="overline">Cumul sur la période</p>
+        <p class="co2-chiffre-cumul"><span class="num" id="co2-cumul">0</span><span class="co2-unite-cumul">tCO₂e</span></p>
+        <p class="co2-unite" id="co2-periode">–</p>
+      </div>
+      <p class="sr-only" id="co2-resume" role="status"></p>
+    </section>
+
+    <!-- Trois équivalences -->
+    <section aria-labelledby="titre-equiv">
+      <h2 class="sr-only" id="titre-equiv">Équivalences</h2>
+      <div class="co2-equivalences">
+
+        <article class="kpi co2-equiv">
+          <span class="co2-equiv-icone" aria-hidden="true">
+            <svg class="icone" viewBox="0 0 24 24" focusable="false"><path d="M1 4h15v12H1z"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/></svg>
+          </span>
+          <h3 class="overline">Camions-citernes évités</h3>
+          <p class="kpi-valeur"><span id="co2-camions">0</span><span class="kpi-unite">par an</span></p>
+          <p class="kpi-detail" id="co2-camions-detail">–</p>
+        </article>
+
+        <article class="kpi co2-equiv">
+          <span class="co2-equiv-icone" aria-hidden="true">
+            <svg class="icone" viewBox="0 0 24 24" focusable="false"><path d="M3 13l2-6h14l2 6"/><rect x="3" y="13" width="18" height="5" rx="1.5"/><circle cx="7.5" cy="18" r="1.5"/><circle cx="16.5" cy="18" r="1.5"/></svg>
+          </span>
+          <h3 class="overline">Kilomètres en voiture équivalents</h3>
+          <p class="kpi-valeur"><span id="co2-km">0</span><span class="kpi-unite" id="co2-km-unite">km par an</span></p>
+          <p class="kpi-detail" id="co2-km-detail">–</p>
+        </article>
+
+        <article class="kpi co2-equiv">
+          <span class="co2-equiv-icone" aria-hidden="true">
+            <svg class="icone" viewBox="0 0 24 24" focusable="false"><path d="M22 17l-8.5-8.5-5 5L2 7"/><path d="M16 17h6v-6"/></svg>
+          </span>
+          <h3 class="overline">Réduction par rapport à la filière classique</h3>
+          <p class="kpi-valeur"><span id="co2-pourcent">0</span><span class="kpi-unite">%</span></p>
+          <p class="kpi-detail" id="co2-pourcent-detail">–</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Graphique comparatif -->
+    <section class="cadre" aria-labelledby="titre-graphique">
+      <div class="cadre-entete">
+        <div>
+          <h2 id="titre-graphique">Émissions par filière</h2>
+          <p>En tonnes de CO₂ équivalent par an, pour le même volume de déchets concentrés.</p>
+        </div>
+      </div>
+      <div class="graph-toile co2-graphique" id="zone-co2">
+        <canvas id="graph-co2" role="img" aria-label="Émissions annuelles de CO₂ équivalent : filière classique contre Elixir sur site"></canvas>
+      </div>
+    </section>
+
+    <!-- Hypothèses modifiables -->
+    <section class="cadre" aria-labelledby="titre-hypotheses">
+      <div class="cadre-entete">
+        <div>
+          <h2 id="titre-hypotheses">Modifier les hypothèses</h2>
+          <p>Le compteur, les équivalences et le graphique se recalculent en direct.</p>
+        </div>
+        <button type="button" class="bouton bouton-secondaire" id="btn-defaut">Revenir aux hypothèses par défaut</button>
+      </div>
+
+      <div class="co2-curseurs">
+        <div class="champ">
+          <label for="cur-volume">Volume de déchets traités</label>
+          <div class="curseur-ligne">
+            <input type="range" id="cur-volume" min="0" max="2400" step="100" value="1200">
+            <output class="num curseur-valeur co2-valeur-curseur" id="val-volume" for="cur-volume">1 200 m³/an</output>
+          </div>
+          <p class="petit texte-doux">Jusqu'à 2 400 m³/an, soit 2 unités Elixir.</p>
+        </div>
+
+        <div class="champ">
+          <label for="cur-distance">Distance de l'incinérateur</label>
+          <div class="curseur-ligne">
+            <input type="range" id="cur-distance" min="100" max="800" step="25" value="450">
+            <output class="num curseur-valeur co2-valeur-curseur" id="val-distance" for="cur-distance">450 km</output>
+          </div>
+          <p class="petit texte-doux">Trajet aller, par camion-citerne.</p>
+        </div>
+
+        <div class="champ">
+          <label for="cur-incineration">Émissions de l'incinération</label>
+          <div class="curseur-ligne">
+            <input type="range" id="cur-incineration" min="0.10" max="0.40" step="0.01" value="0.25">
+            <output class="num curseur-valeur co2-valeur-curseur" id="val-incineration" for="cur-incineration">0,25 tCO₂e/m³</output>
+          </div>
+          <p class="petit texte-doux">Surtout le combustible d'appoint nécessaire.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lecture prudente -->
+    <aside class="message co2-prudence" aria-labelledby="titre-prudence">
+      <svg class="icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+      <div>
+        <h2 id="titre-prudence">Lecture prudente</h2>
+        <ul class="liste-puces">
+          <li>Seul le trajet aller est compté : le retour à vide du camion ne l'est pas. Le CO₂ évité est donc volontairement sous-estimé.</li>
+          <li>Ce sont des ordres de grandeur, pas des mesures.</li>
+          <li>Le calcul porte uniquement sur la destruction des déchets concentrés, pas sur l'ensemble du traitement de l'eau.</li>
+          <li>Les facteurs d'émission sont à confirmer avec la Base Empreinte de l'ADEME et avec les exploitants.</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Tableau des hypothèses -->
+    <section class="cadre">
+      <details class="co2-details">
+        <summary>Voir toutes les hypothèses et leurs justifications</summary>
+        <div class="tableau-conteneur">
+          <table class="tableau" id="table-hypotheses-co2"></table>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <div id="pied-site"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="js/data-traitements.js"></script>
+  <script src="js/calculs.js"></script>
+  <script src="js/data-captages.js"></script>
+  <script src="js/etat.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/data-co2.js"></script>
+  <script src="js/calculs-co2.js"></script>
+  <script src="js/page-co2.js"></script>
+</body>
+</html>

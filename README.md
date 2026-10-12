@@ -68,6 +68,30 @@ Valeurs de contrôle sur le captage pilote à 100 % du débit : brut 0,3273 µg/
 - **Icônes** : SVG inline au trait fin, dessinées pour le projet, sans librairie.
 - Toutes les couleurs sont des variables CSS dans `:root` (`css/base.css`). Les animations respectent `prefers-reduced-motion`.
 
+## CO₂ évité
+
+La page `co2.html` (entrée « CO₂ évité » du menu) chiffre l'intérêt de détruire sur place les déchets concentrés en PFAS avec l'unité mobile Elixir (ArianeGroup), plutôt que de les envoyer par camion vers un incinérateur éloigné.
+
+**Fichiers** : `co2.html`, `js/data-co2.js` (hypothèses), `js/calculs-co2.js` (fonctions pures), `js/page-co2.js` (affichage). Les calculs du reste de l'application ne sont pas concernés.
+
+**Calcul** (pour un même volume de déchets concentrés, en tCO₂e par an) :
+
+```
+classique_transport   = volume × densité × distance × facteurCamion / 1000
+classique_destruction = volume × incinerationTCO2ParM3
+elixir_electricite    = volume × elixirKwhParM3 × facteurElec / 1000
+elixir_deplacements   = déplacements × kmParDéplacement × facteurConvoi / 1000
+
+évité par an = (transport + destruction classiques) − (électricité + déplacements Elixir)   (jamais négatif)
+évité cumulé = évité par an × durée entre dateDebut et dateFin
+```
+
+Avec les hypothèses par défaut : filière classique 354,0 tCO₂e/an (transport 54,0 + incinération 300,0), filière Elixir 15,3 tCO₂e/an (électricité 15,0 + déplacements 0,3), soit **338,7 tCO₂e évitées par an** (environ 95,7 %), environ 1 609 tCO₂e cumulées du 01/01/2027 au 30/09/2031, 48 camions-citernes évités par an et environ 1,69 million de km en voiture équivalents.
+
+**Hypothèses** : toutes dans `HYPOTHESES_CO2` (`js/data-co2.js`), chacune avec sa valeur, son unité, son libellé et sa justification. Trois sont réglables en direct dans la page (volume, distance de l'incinérateur, émissions de l'incinération) ; les valeurs choisies sont gardées dans `sessionStorage` sous la clé `hydra-co2`, séparée de l'état du reste de l'application.
+
+**Lecture prudente** : seul le trajet aller du camion est compté (le retour à vide ne l'est pas), donc le CO₂ évité est volontairement sous-estimé. Ce sont des ordres de grandeur, à confirmer avec la Base Empreinte de l'ADEME et les exploitants, et le calcul ne porte que sur la destruction des déchets concentrés, pas sur l'ensemble du traitement de l'eau.
+
 ## Notes
 
 - **Fond de carte** : OpenStreetMap, éclairci et désaturé en CSS pour un rendu proche de « Positron ». Les tuiles CARTO exigent désormais une clé d'API.
