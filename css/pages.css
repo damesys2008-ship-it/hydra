@@ -316,3 +316,66 @@
   .co2-equivalences { grid-template-columns: minmax(0, 1fr); }
   .co2-graphique { height: 300px; }
 }
+
+/* ============================================================
+   Mobile (accès par QR code)
+   Bloc ajouté en fin de fichier : il ne s'applique qu'aux petits
+   écrans et aux écrans tactiles, et ne change rien sur ordinateur.
+   ============================================================ */
+
+/* « µ » protégé des majuscules forcées (voir commun.js) */
+.micro { text-transform: none; }
+
+/* Cibles tactiles d'au moins 44 px sur écran tactile */
+@media (pointer: coarse) {
+  .leaflet-touch .leaflet-bar a { width: 44px; height: 44px; line-height: 44px; }
+  .bouton-petit { min-height: 44px; }
+  .fil a { display: inline-block; padding: var(--esp-12) 0; }
+  .case { min-height: 44px; }
+}
+
+/* Tableaux : chaque ligne devient une carte sur téléphone */
+@media (max-width: 640px) {
+  .tableau-conteneur { overflow-x: visible; }
+  .tableau.tableau-cartes,
+  .tableau.tableau-cartes tbody,
+  .tableau.tableau-cartes tr,
+  .tableau.tableau-cartes td { display: block; width: 100%; }
+  .tableau.tableau-cartes caption { display: block; }
+  .tableau.tableau-cartes thead {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .tableau.tableau-cartes tbody tr {
+    border: 1px solid var(--bordure); border-radius: var(--rayon-bouton);
+    padding: var(--esp-4) var(--esp-16); margin-bottom: var(--esp-12); background: var(--surface);
+  }
+  .tableau.tableau-cartes tbody tr:last-child { margin-bottom: 0; }
+  .tableau.tableau-cartes tbody tr:hover { background: var(--surface); }
+  .tableau.tableau-cartes tr.mis-en-avant,
+  .tableau.tableau-cartes tr.mis-en-avant:hover { background: var(--action-pale); border-color: var(--action); }
+  .tableau.tableau-cartes td,
+  .tableau.tableau-cartes tbody tr:last-child td {
+    display: flex; justify-content: space-between; align-items: baseline; gap: var(--esp-16);
+    padding: var(--esp-8) 0; border-bottom: 1px solid var(--bordure);
+    text-align: right; white-space: normal;
+  }
+  .tableau.tableau-cartes td::before {
+    content: attr(data-label); flex: 0 0 42%; text-align: left;
+    /* pas de majuscules forcées : « µg/L » deviendrait « MG/L » */
+    font-size: 13px; font-weight: 600; color: var(--texte-doux);
+  }
+  /* Première cellule = titre de la carte */
+  .tableau.tableau-cartes td:first-child { display: block; text-align: left; font-size: 17px; padding-top: var(--esp-12); }
+  .tableau.tableau-cartes td:first-child::before { display: none; }
+  .tableau.tableau-cartes td:last-child { border-bottom: 0; }
+  .tableau.tableau-cartes td[data-label=""]::before { display: none; }
+  .tableau.tableau-cartes td:empty { display: none; }
+  .tableau.tableau-cartes td.actions { justify-content: flex-start; flex-wrap: wrap; gap: var(--esp-8); padding-bottom: var(--esp-12); }
+  .tableau.tableau-cartes td.actions .bouton { margin-left: 0; }
+
+  /* Carte : pas de liste à défilement dans la page, et une carte qui laisse de la place pour faire défiler */
+  .liste-captages { max-height: none; overflow: visible; }
+  .grande-carte { height: 55vh; min-height: 320px; }
+  .mini-carte { height: 300px; }
+}

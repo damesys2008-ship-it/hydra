@@ -71,6 +71,7 @@ var Carte = (function () {
     }
 
     var carte = L.map(zone, {
+      zoomSnap: 0.25,          // zooms intermédiaires : cadrage serré même sur téléphone
       zoomControl: interactif,
       dragging: interactif,
       scrollWheelZoom: interactif,
@@ -78,7 +79,12 @@ var Carte = (function () {
       boxZoom: interactif,
       keyboard: interactif,
       touchZoom: interactif
-    }).setView([47.905, 1.92], options.zoom || 11);
+    });
+
+    // Cadrage initial sur les 30 captages : sur un écran étroit (téléphone),
+    // un zoom fixe coupait les captages situés en bord de carte.
+    var limitesCaptages = L.latLngBounds(CAPTAGES.map(function (c) { return [c.lat, c.lng]; }));
+    carte.fitBounds(limitesCaptages, { padding: [28, 28], maxZoom: options.zoom || 12, animate: false });
 
     // Fond de carte clair. Les tuiles CARTO « Positron » exigent désormais une
     // clé d'API : on utilise OpenStreetMap, éclairci et désaturé en CSS

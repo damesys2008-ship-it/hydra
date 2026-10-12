@@ -241,3 +241,86 @@ var Commun = (function () {
     monter: monter
   };
 })();
+
+/* ============================================================
+   Tableaux lisibles sur téléphone
+   Sur petit écran, chaque ligne d'un tableau .tableau est affichée
+   comme une carte (voir « Mobile » à la fin de css/pages.css).
+   Pour cela, chaque cellule reçoit l'intitulé de sa colonne dans
+   un attribut data-label. Les tableaux étant générés en JS (et
+   régénérés à chaque simulation), on surveille le DOM.
+   ============================================================ */
+(function () {
+  "use strict";
+
+  function etiqueterTableaux() {
+    var tableaux = document.querySelectorAll("table.tableau");
+    for (var t = 0; t < tableaux.length; t++) {
+      var entetes = tableaux[t].querySelectorAll("thead th");
+      if (entetes.length === 0) { continue; }
+      var libelles = [];
+      for (var i = 0; i < entetes.length; i++) {
+        // Une colonne dont l'intitulé est réservé aux lecteurs d'écran
+        // (ex. « Actions ») n'affiche pas d'étiquette visible.
+        libelles.push(entetes[i].querySelector(".sr-only") ? "" : entetes[i].textContent.trim());
+      }
+      var lignes = tableaux[t].querySelectorAll("tbody tr");
+      for (var l = 0; l < lignes.length; l++) {
+        var cellules = lignes[l].children;
+        for (var c = 0; c < cellules.length; c++) {
+          var libelle = libelles[c] || "";
+          if (cellules[c].getAttribute("data-label") !== libelle) {
+            cellules[c].setAttribute("data-label", libelle);
+          }
+        }
+      }
+      tableaux[t].classList.add("tableau-cartes");
+    }
+  }
+
+  /* Les intitulés en MAJUSCULES (text-transform: uppercase) transforment
+     « µg/L » en « ΜG/L », qui se lit « MG/L » (milligrammes : erreur x1000).
+     On isole chaque « µ » de ces intitulés dans un span qui garde la minuscule. */
+  function proteger_micro() {
+    var marcheur = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) { return n.nodeValue.indexOf("µ") !== -1 ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP; }
+    });
+    var aTraiter = [];
+    while (marcheur.nextNode()) {
+      var parent = marcheur.currentNode.parentNode;
+      if (parent && !parent.classList.contains("micro") &&
+          window.getComputedStyle(parent).textTransform === "uppercase") {
+        aTraiter.push(marcheur.currentNode);
+      }
+    }
+    aTraiter.forEach(function (noeud) {
+      var morceaux = noeud.nodeValue.split("µ");
+      var fragment = document.createDocumentFragment();
+      morceaux.forEach(function (texte, i) {
+        if (i > 0) {
+          var span = document.createElement("span");
+          span.className = "micro";
+          span.textContent = "µ";
+          fragment.appendChild(span);
+        }
+        if (texte) { fragment.appendChild(document.createTextNode(texte)); }
+      });
+      noeud.parentNode.replaceChild(fragment, noeud);
+    });
+  }
+
+  function toutTraiter() { etiqueterTableaux(); proteger_micro(); }
+
+  var enAttente = false;
+  function planifier() {
+    if (enAttente) { return; }
+    enAttente = true;
+    window.requestAnimationFrame(function () { enAttente = false; toutTraiter(); });
+  }
+
+  toutTraiter();
+  if ("MutationObserver" in window) {
+    new MutationObserver(planifier).observe(document.body, { childList: true, subtree: true });
+  }
+  document.addEventListener("DOMContentLoaded", toutTraiter);
+})();
