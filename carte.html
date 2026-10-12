@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Carte des captages — Hydra, pilotage PFAS</title>
+  <meta name="description" content="Carte des 30 captages d'eau potable d'Orléans Métropole, filtrable par niveau de qualité et par commune.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body data-page="carte">
+
+  <div id="entete-site"></div>
+
+  <main class="conteneur principal" id="contenu">
+
+    <div class="titre-page">
+      <p class="overline">Carte</p>
+      <h1>Carte des captages</h1>
+      <p>Filtrez par niveau de qualité ou par commune, puis sélectionnez un captage dans la liste ou sur la carte.</p>
+    </div>
+
+    <div class="disposition-carte">
+
+      <aside class="cadre panneau-filtres" aria-label="Filtres et liste des captages">
+        <fieldset class="filtre">
+          <legend class="champ-label">Niveau de qualité</legend>
+          <div id="filtres-niveaux"></div>
+        </fieldset>
+
+        <div class="champ">
+          <label for="filtre-commune">Commune</label>
+          <select id="filtre-commune"><option value="">Toutes les communes</option></select>
+        </div>
+
+        <label class="case">
+          <input type="checkbox" id="chk-usines">
+          <span>Afficher les usines de traitement</span>
+        </label>
+
+        <div class="liste-entete">
+          <h2 class="overline" id="titre-liste">Captages</h2>
+          <span class="petit texte-doux" id="nb-captages" aria-live="polite"></span>
+        </div>
+        <ul class="liste-captages" id="liste-captages" aria-labelledby="titre-liste"></ul>
+      </aside>
+
+      <section class="zone-carte" aria-label="Carte">
+        <div class="grande-carte" id="carte" role="application" aria-label="Carte des 30 captages d'Orléans Métropole"></div>
+
+        <div class="resume-captage" id="resume" hidden>
+          <div class="resume-entete">
+            <h2 id="resume-nom">–</h2>
+            <button type="button" class="bouton bouton-secondaire bouton-petit resume-fermer" id="resume-fermer" aria-label="Fermer le résumé">
+              <svg class="icone icone-petite" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+            </button>
+          </div>
+          <p class="petit texte-doux" id="resume-commune">–</p>
+          <p id="resume-badge"></p>
+          <dl class="resume-chiffres">
+            <div><dt class="overline">Concentration</dt><dd class="num" id="resume-conc">–</dd></div>
+            <div><dt class="overline">Population</dt><dd class="num" id="resume-pop">–</dd></div>
+            <div><dt class="overline">Volume annuel</dt><dd class="num" id="resume-vol">–</dd></div>
+          </dl>
+          <div class="groupe-boutons">
+            <a class="bouton" id="resume-fiche" href="captage.html">Voir la fiche complète</a>
+            <a class="bouton bouton-secondaire" id="resume-simuler" href="simulateur.html">Simuler</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="pied-site"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="js/data-traitements.js"></script>
+  <script src="js/calculs.js"></script>
+  <script src="js/data-captages.js"></script>
+  <script src="js/etat.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/carte.js"></script>
+  <script src="js/page-carte.js"></script>
+</body>
+</html>

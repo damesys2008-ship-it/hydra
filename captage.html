@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fiche captage — Hydra, pilotage PFAS</title>
+  <meta name="description" content="Fiche détaillée d'un captage : évolution de la somme des 20 PFAS, composition par molécule et effet d'un traitement.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body data-page="captage">
+
+  <div id="entete-site"></div>
+
+  <main class="conteneur principal" id="contenu">
+
+    <nav class="fil" aria-label="Fil d'Ariane">
+      <a href="index.html">Vue d'ensemble</a> / <a href="carte.html">Carte</a> / <span aria-current="page">Fiche captage</span>
+    </nav>
+
+    <section class="cadre fiche-entete" aria-labelledby="fiche-nom">
+      <div class="fiche-identite">
+        <p class="overline">Fiche captage</p>
+        <h1 id="fiche-nom">–</h1>
+        <p class="fiche-sous-titre">
+          <span id="fiche-commune">–</span>
+          <span id="fiche-badge"></span>
+        </p>
+      </div>
+
+      <div class="fiche-actions">
+        <div class="champ">
+          <label for="choix-captage">Changer de captage</label>
+          <select id="choix-captage"></select>
+        </div>
+        <a class="bouton" id="btn-simuler" href="simulateur.html">
+          <svg class="icone icone-petite" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+          Simuler un traitement sur ce captage
+        </a>
+      </div>
+
+      <dl class="fiche-chiffres">
+        <div><dt class="overline">Somme des 20 PFAS</dt><dd class="num" id="fiche-somme">–</dd></div>
+        <div><dt class="overline">Population desservie</dt><dd class="num" id="fiche-population">–</dd></div>
+        <div><dt class="overline">Volume annuel</dt><dd class="num" id="fiche-volume">–</dd></div>
+        <div><dt class="overline">Usine de rattachement</dt><dd id="fiche-usine">–</dd></div>
+      </dl>
+    </section>
+
+    <div class="message" id="fiche-traitement" hidden></div>
+
+    <section class="cadre" aria-labelledby="titre-evolution">
+      <div class="cadre-entete">
+        <div>
+          <h2 id="titre-evolution">Évolution de la somme des 20 PFAS</h2>
+          <p>24 mois glissants, en µg/L. Limite légale : 0,10 µg/L. Recommandation HCSP : 0,02 µg/L pour 4 PFAS.</p>
+        </div>
+      </div>
+      <div class="graph-toile" id="zone-evolution"><canvas id="graph-evolution" role="img" aria-label="Courbe d'évolution de la somme des 20 PFAS sur 24 mois"></canvas></div>
+    </section>
+
+    <section class="cadre" aria-labelledby="titre-composition">
+      <div class="cadre-entete">
+        <div>
+          <h2 id="titre-composition">Composition par molécule</h2>
+          <p id="note-composition">–</p>
+        </div>
+      </div>
+      <div class="graph-toile graph-toile-compo" id="zone-composition"><canvas id="graph-composition" role="img" aria-label="Concentrations par molécule avant et après traitement"></canvas></div>
+    </section>
+
+    <section class="cadre" aria-labelledby="titre-molecules">
+      <div class="cadre-entete">
+        <div>
+          <h2 id="titre-molecules">Détail des 10 molécules quantifiées</h2>
+          <p>Les 10 autres PFAS réglementés sont sous le seuil de détection.</p>
+        </div>
+      </div>
+      <div class="tableau-conteneur"><table class="tableau" id="table-molecules"></table></div>
+    </section>
+
+  </main>
+
+  <div id="pied-site"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="js/data-traitements.js"></script>
+  <script src="js/calculs.js"></script>
+  <script src="js/data-captages.js"></script>
+  <script src="js/etat.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/graphiques.js"></script>
+  <script src="js/page-captage.js"></script>
+</body>
+</html>

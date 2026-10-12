@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Méthode et hypothèses — Hydra, pilotage PFAS</title>
+  <meta name="description" content="Contexte réglementaire, mesures réelles, règles de calcul et hypothèses du prototype Hydra.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body data-page="methode">
+
+  <div id="entete-site"></div>
+
+  <main class="conteneur principal" id="contenu">
+
+    <div class="titre-page">
+      <p class="overline">Méthode</p>
+      <h1>Méthode et hypothèses</h1>
+      <p>Ce que le prototype calcule, d'où viennent les chiffres et jusqu'où on peut s'y fier.</p>
+    </div>
+
+    <div class="page-texte">
+
+      <nav class="sommaire cadre" aria-label="Sur cette page">
+        <p class="overline">Sur cette page</p>
+        <ul>
+          <li><a href="#contexte">Contexte réglementaire</a></li>
+          <li><a href="#mesures">Mesures réelles du captage pilote</a></li>
+          <li><a href="#calculs">Règles de calcul</a></li>
+          <li><a href="#hypotheses">Hypothèses de traitement</a></li>
+          <li><a href="#niveaux">Niveaux de qualité</a></li>
+          <li><a href="#limites">Limites du prototype</a></li>
+        </ul>
+      </nav>
+
+      <section class="cadre" id="contexte" aria-labelledby="t-contexte">
+        <h2 id="t-contexte">Contexte réglementaire</h2>
+        <p>Une nappe utilisée pour l'eau potable sur Orléans Métropole contient des PFAS, des polluants dits « éternels ».
+          Le territoire compte <span id="ctx-communes">22</span> communes et 30 captages, qui mettent en distribution
+          <span class="num" id="ctx-distribue">–</span> m³ d'eau par an, dont <span class="num" id="ctx-vendu">–</span> m³ vendus.</p>
+        <div class="grille-seuils">
+          <div class="seuil">
+            <p class="seuil-valeur num">0,10 µg/L</p>
+            <p><strong>Limite légale</strong> pour la somme de 20 PFAS, en vigueur depuis le 1er janvier 2026.</p>
+          </div>
+          <div class="seuil">
+            <p class="seuil-valeur num">0,02 µg/L</p>
+            <p><strong>Recommandation du HCSP</strong> (Haut Conseil de la santé publique) pour la somme de 4 PFAS : PFOA, PFOS, PFNA et PFHxS.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cadre" id="mesures" aria-labelledby="t-mesures">
+        <h2 id="t-mesures">Mesures réelles du captage pilote</h2>
+        <p>Ce sont les seules données réelles de l'application, fournies par le sujet. Elles concernent le captage pilote
+          (Montabuzard) et sont exprimées en µg/L. Les 10 autres PFAS réglementés sont sous le seuil de détection.</p>
+        <div class="tableau-conteneur"><table class="tableau" id="table-mesures"></table></div>
+      </section>
+
+      <section class="cadre" id="calculs" aria-labelledby="t-calculs">
+        <h2 id="t-calculs">Règles de calcul</h2>
+        <ol class="etapes">
+          <li>
+            <h3>Abattement</h3>
+            <p>Chaque traitement retient une fraction de chaque molécule. La concentration en sortie est égale à la
+              concentration en entrée multipliée par (1 − abattement). Pour le Bouclier PFAS, les deux étapes
+              s'appliquent l'une après l'autre : la sortie du charbon actif devient l'entrée de la résine.</p>
+            <p class="formule num">sortie = concentration × (1 − abattement)</p>
+          </li>
+          <li>
+            <h3>Mélange du débit</h3>
+            <p>On peut ne traiter qu'une partie de l'eau, puis la mélanger avec le reste. Avec une part traitée p
+              (de 0 à 100 %), la concentration finale est la moyenne pondérée de l'eau traitée et de l'eau brute.</p>
+            <p class="formule num">sortie = p × traitée + (1 − p) × brute</p>
+          </li>
+          <li>
+            <h3>Conformité</h3>
+            <p>Un captage est conforme si la somme des 20 PFAS ne dépasse pas 0,10 µg/L. Seules 10 molécules sont
+              quantifiées dans le sujet : les autres comptent pour zéro.</p>
+          </li>
+          <li>
+            <h3>Coût et impact sur la facture</h3>
+            <p>Le coût annuel est le volume traité multiplié par le coût au m³ du traitement. L'impact sur la facture
+              rapporte la somme des coûts au volume vendu, puis à la consommation d'un foyer de référence.</p>
+            <p class="formule num">impact (€/m³) = Σ (coût €/m³ × volume traité) ÷ 16 000 000 m³ vendus<br>
+              impact par foyer (€/an) = impact (€/m³) × 120 m³</p>
+          </li>
+          <li>
+            <h3>Destruction des résidus : la règle Elixir</h3>
+            <p>Une unité Elixir détruit au plus <span class="num" id="regle-elixir">–</span> m³ de concentrat par an.
+              La nanofiltration produit un concentrat liquide égal à 15 % du débit traité : traitée à grande échelle,
+              elle exigerait des dizaines à des centaines d'unités, ce qui n'est pas réaliste pour une destruction sur site.</p>
+            <p class="formule num">unités nécessaires = volume traité × 15 % ÷ 1 200 m³/an</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="cadre" id="hypotheses" aria-labelledby="t-hypotheses">
+        <h2 id="t-hypotheses">Hypothèses de traitement</h2>
+        <p>Tableaux générés à partir de <span class="mono">data-traitements.js</span>, donc toujours identiques aux
+          valeurs utilisées par les calculs. Ce sont des ordres de grandeur indicatifs.</p>
+
+        <h3>Taux d'abattement par molécule</h3>
+        <div class="tableau-conteneur"><table class="tableau" id="table-abattements"></table></div>
+
+        <h3>Coûts, délais et déchets</h3>
+        <div class="tableau-conteneur"><table class="tableau" id="table-couts"></table></div>
+      </section>
+
+      <section class="cadre" id="niveaux" aria-labelledby="t-niveaux">
+        <h2 id="t-niveaux">Niveaux de qualité</h2>
+        <p>Chaque niveau est signalé par une couleur, une icône et un libellé : la couleur n'est jamais la seule information.</p>
+        <div class="tableau-conteneur"><table class="tableau" id="table-niveaux"></table></div>
+      </section>
+
+      <section class="cadre" id="limites" aria-labelledby="t-limites">
+        <h2 id="t-limites">Limites du prototype</h2>
+        <ul class="liste-puces">
+          <li>Les données sont fictives, sauf les 4 mesures réelles du captage pilote.</li>
+          <li>Les positions des captages et des usines sont approximatives.</li>
+          <li>Les taux d'abattement, les coûts et les délais sont des ordres de grandeur indicatifs, pas des devis.</li>
+          <li>Les 29 autres captages reprennent le profil de molécules du captage pilote : ce n'est pas le cas dans la réalité.</li>
+          <li>L'historique est reconstitué ; il ne tient pas compte des variations saisonnières ni des travaux.</li>
+        </ul>
+        <p>En production, les données viendraient des systèmes de supervision des exploitants et des analyses de l'ARS
+          (API publique Hub'Eau).</p>
+      </section>
+
+    </div>
+  </main>
+
+  <div id="pied-site"></div>
+
+  <script src="js/data-traitements.js"></script>
+  <script src="js/calculs.js"></script>
+  <script src="js/data-captages.js"></script>
+  <script src="js/etat.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/page-methode.js"></script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vue d'ensemble — Hydra, pilotage PFAS</title>
+  <meta name="description" content="Qualité de l'eau potable sur Orléans Métropole : conformité des 30 captages vis-à-vis des PFAS. Prototype de hackathon.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body data-page="accueil">
+
+  <div id="entete-site"></div>
+
+  <main class="conteneur principal" id="contenu">
+
+    <div class="titre-page">
+      <p class="overline">Vue d'ensemble</p>
+      <h1>Qualité de l'eau sur le territoire</h1>
+      <p>Depuis le 1er janvier 2026, la limite légale est de 0,10 µg/L pour la somme de 20 PFAS dans l'eau
+        distribuée. Cette vue résume l'état des 30 captages d'Orléans Métropole et l'effet des traitements simulés.</p>
+    </div>
+
+    <section aria-labelledby="titre-kpi">
+      <h2 class="sr-only" id="titre-kpi">Indicateurs du territoire</h2>
+      <div class="grille-kpi">
+        <article class="kpi" id="kpi-conformes">
+          <h3 class="overline">Captages conformes</h3>
+          <p class="kpi-valeur"><span id="kpi-conformes-val">–</span><span class="kpi-unite" id="kpi-conformes-total">/ 30</span></p>
+          <p class="kpi-detail" id="kpi-conformes-detail">&nbsp;</p>
+        </article>
+        <article class="kpi" id="kpi-population">
+          <h3 class="overline">Population exposée</h3>
+          <p class="kpi-valeur"><span id="kpi-population-val">–</span><span class="kpi-unite">hab.</span></p>
+          <p class="kpi-detail">Au-dessus de 0,10 µg/L</p>
+        </article>
+        <article class="kpi" id="kpi-max">
+          <h3 class="overline">Concentration maximale</h3>
+          <p class="kpi-valeur"><span id="kpi-max-val">–</span><span class="kpi-unite">µg/L</span></p>
+          <p class="kpi-detail" id="kpi-max-detail">&nbsp;</p>
+        </article>
+        <article class="kpi" id="kpi-invest">
+          <h3 class="overline">Investissement annuel</h3>
+          <p class="kpi-valeur"><span id="kpi-invest-val">–</span><span class="kpi-unite" id="kpi-invest-unite">€/an</span></p>
+          <p class="kpi-detail" id="kpi-invest-detail">Traitements simulés</p>
+        </article>
+        <article class="kpi" id="kpi-facture">
+          <h3 class="overline">Impact sur la facture</h3>
+          <p class="kpi-valeur"><span id="kpi-facture-val">–</span><span class="kpi-unite">€/m³</span></p>
+          <p class="kpi-detail"><span class="num" id="kpi-facture-foyer">–</span> €/an pour un foyer de 120 m³</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="grille-accueil">
+      <section class="cadre cadre-carte" aria-labelledby="titre-mini-carte">
+        <div class="cadre-entete">
+          <div>
+            <h2 id="titre-mini-carte">Les 30 captages</h2>
+            <p>Taille du point : volume produit. Anneau pulsant : captage au-dessus de la limite légale.</p>
+          </div>
+          <a class="bouton bouton-secondaire bouton-petit" href="carte.html">Ouvrir la carte complète</a>
+        </div>
+        <div class="mini-carte" id="mini-carte" role="img" aria-label="Carte de situation des 30 captages. La liste détaillée est disponible sur la page Carte."></div>
+        <ul class="legende" id="legende-niveaux" aria-label="Légende des niveaux de qualité"></ul>
+      </section>
+
+      <aside class="cadre cadre-reco" aria-labelledby="titre-reco">
+        <p class="overline">Recommandation</p>
+        <h2 id="titre-reco">Bouclier PFAS</h2>
+        <p>Un double filtre (charbon actif puis résine échangeuse d'ions), suivi de la destruction des résidus concentrés.
+          La résine retient les petites molécules que le charbon laisse passer.</p>
+        <p class="reco-chiffre" id="reco-chiffre"></p>
+        <a class="bouton" id="lien-simulateur" href="simulateur.html">Ouvrir le simulateur</a>
+      </aside>
+    </div>
+
+    <section class="cadre" aria-labelledby="titre-priorite">
+      <div class="cadre-entete">
+        <div>
+          <h2 id="titre-priorite">Captages à traiter en priorité</h2>
+          <p>Captages au-dessus de la limite légale, classés par concentration décroissante.</p>
+        </div>
+      </div>
+      <div id="liste-priorite"></div>
+    </section>
+
+  </main>
+
+  <div id="pied-site"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="js/data-traitements.js"></script>
+  <script src="js/calculs.js"></script>
+  <script src="js/data-captages.js"></script>
+  <script src="js/etat.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/carte.js"></script>
+  <script src="js/page-accueil.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulateur — Hydra, pilotage PFAS</title>
+  <meta name="description" content="Simulez le déploiement d'un traitement PFAS sur un captage : concentration en sortie, conformité, coût, délai, déchets et impact sur la facture.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body data-page="simulateur">
+
+  <div id="entete-site"></div>
+
+  <main class="conteneur principal" id="contenu">
+
+    <div class="titre-page">
+      <p class="overline">Simulateur</p>
+      <h1>Simulateur de déploiement</h1>
+      <p>Choisissez un captage, un traitement et la part du débit à traiter. Les résultats se mettent à jour en direct ;
+        un traitement n'est pris en compte dans les indicateurs du territoire qu'une fois déployé.</p>
+    </div>
+
+    <div class="grille-sim">
+
+      <section class="cadre sim-parametres" aria-labelledby="titre-parametres">
+        <h2 id="titre-parametres">Paramètres</h2>
+
+        <div class="champ">
+          <label for="choix-captage">Captage</label>
+          <select id="choix-captage"></select>
+        </div>
+
+        <div class="champ">
+          <span class="champ-label" id="lbl-traitement">Traitement</span>
+          <div class="segments" id="segments" role="group" aria-labelledby="lbl-traitement"></div>
+        </div>
+
+        <div class="champ">
+          <label for="curseur-part">Part du débit traité</label>
+          <div class="curseur-ligne">
+            <input type="range" id="curseur-part" min="0" max="100" step="5" value="0" aria-describedby="curseur-aide">
+            <output class="num curseur-valeur" id="curseur-valeur" for="curseur-part">0 %</output>
+          </div>
+          <p class="petit texte-doux" id="curseur-aide">0 % signifie aucun traitement. La part traitée est mélangée au reste de l'eau, non traité.</p>
+        </div>
+
+        <div class="sim-statut-ligne">
+          <span class="petit texte-doux">Statut</span>
+          <span class="badge badge-neutre" id="sim-statut">Aucun traitement</span>
+        </div>
+
+        <div class="groupe-boutons">
+          <button type="button" class="bouton" id="btn-deployer">Déployer sur ce captage</button>
+          <button type="button" class="bouton bouton-secondaire" id="btn-retirer">Retirer</button>
+        </div>
+
+        <hr class="separateur">
+
+        <button type="button" class="bouton bouton-secondaire" id="btn-tous">
+          Appliquer le Bouclier PFAS à tous les captages non conformes
+        </button>
+        <p class="message" id="message-sim" role="status" hidden></p>
+      </section>
+
+      <section class="sim-resultats" aria-labelledby="titre-resultats">
+        <h2 id="titre-resultats">Résultats pour <span id="sim-cible">–</span></h2>
+        <div class="grille-tuiles" aria-live="polite">
+
+          <article class="tuile" id="tuile-conc">
+            <h3 class="overline">Concentration en sortie</h3>
+            <p class="tuile-valeur"><span class="num" id="t-conc">–</span><span class="tuile-unite">µg/L</span></p>
+            <p class="tuile-detail tuile-detail-icone" id="t-abattement">–</p>
+          </article>
+
+          <article class="tuile" id="tuile-conformite">
+            <h3 class="overline">Conformité</h3>
+            <p class="tuile-conformite" id="t-conformite">–</p>
+            <p class="tuile-detail" id="t-conformite-detail">–</p>
+          </article>
+
+          <article class="tuile" id="tuile-cout">
+            <h3 class="overline">Coût annuel</h3>
+            <p class="tuile-valeur"><span class="num" id="t-cout">–</span><span class="tuile-unite">/an</span></p>
+            <p class="tuile-detail" id="t-cout-detail">–</p>
+          </article>
+
+          <article class="tuile" id="tuile-delai">
+            <h3 class="overline">Délai de mise en service</h3>
+            <p class="tuile-valeur"><span class="num" id="t-delai">–</span><span class="tuile-unite" id="t-delai-unite"> mois</span></p>
+            <p class="tuile-detail" id="t-delai-detail">–</p>
+          </article>
+
+          <article class="tuile" id="tuile-dechets">
+            <h3 class="overline">Déchets PFAS</h3>
+            <p class="tuile-texte" id="t-dechets">–</p>
+            <p class="tuile-detail" id="t-dechets-detail">&nbsp;</p>
+          </article>
+
+          <article class="tuile" id="tuile-facture">
+            <h3 class="overline">Impact sur la facture</h3>
+            <p class="tuile-valeur"><span class="num" id="t-facture">–</span><span class="tuile-unite">€/m³</span></p>
+            <p class="tuile-detail" id="t-facture-detail">–</p>
+          </article>
+
+        </div>
+      </section>
+    </div>
+
+    <section class="cadre" aria-labelledby="titre-comparatif">
+      <div class="cadre-entete">
+        <div>
+          <h2 id="titre-comparatif">Comparatif des quatre traitements</h2>
+          <p id="comparatif-note">–</p>
+        </div>
+      </div>
+      <div class="tableau-conteneur">
+        <table class="tableau" id="table-comparatif"></table>
+      </div>
+    </section>
+
+    <section class="cadre" aria-labelledby="titre-deploiements">
+      <div class="cadre-entete">
+        <div>
+          <h2 id="titre-deploiements">Déploiements actifs</h2>
+          <p id="deploiements-resume">–</p>
+        </div>
+      </div>
+      <div id="liste-deploiements"></div>
+    </section>
+
+  </main>
+
+  <div id="pied-site"></div>
+
+  <script src="js/data-traitements.js"></script>
+  <script src="js/calculs.js"></script>
+  <script src="js/data-captages.js"></script>
+  <script src="js/etat.js"></script>
+  <script src="js/commun.js"></script>
+  <script src="js/simulateur.js"></script>
+  <script src="js/page-simulateur.js"></script>
+</body>
+</html>
