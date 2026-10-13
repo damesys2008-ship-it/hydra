@@ -153,7 +153,7 @@ var Commun = (function () {
       '<div class="conteneur entete-interieur">' +
         '<a class="logo" href="index.html" aria-label="O-Pure, retour à la vue d\'ensemble">' +
           '<img class="logo-image" src="assets/o-pure-goutte.png" alt="" width="40" height="40">' +
-          '<span class="logo-texte"><span class="logo-nom">O-Pure</span>' +
+          '<span class="logo-texte"><img class="logo-nom-image" src="assets/o-pure-texte.png" alt="O-Pure" width="544" height="137">' +
           '<span class="logo-sous">Pilotage PFAS<span class="logo-sep"> — </span>' +
           '<span class="logo-lieu">Orléans Métropole</span></span></span>' +
         '</a>' +
