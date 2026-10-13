@@ -298,6 +298,9 @@ function construireSerieEvolution(captage, idTraitement, partTraitee, sommeSorti
   var delai = traite ? calculerDelaiMois(idTraitement) : 0;
   var nbFutur = traite ? delai + 2 : 0;
   var derniereDate = histo[n - 1].date;
+  // Les mesures d'un captage fermé peuvent dater de 2024 : la projection
+  // part au plus tôt de la date de référence de la démo (data-captages.js).
+  if (typeof DATE_REFERENCE !== "undefined" && DATE_REFERENCE > derniereDate) { derniereDate = DATE_REFERENCE; }
 
   var serie = {
     labels: [], brut: [], apres: [], reels: [],

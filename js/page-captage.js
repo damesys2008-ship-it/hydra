@@ -72,7 +72,19 @@
 
     document.title = captage.nom + " — Fiche captage — Hydra";
     el("fiche-nom").textContent = captage.nom;
-    el("fiche-commune").textContent = captage.commune + (captage.pilote ? " · captage pilote" : "");
+    el("fiche-commune").textContent = captage.commune +
+      (captage.ferme ? " · captage fermé depuis décembre 2023" : "") +
+      (captage.vigilance ? " · zone de vigilance" : "");
+    var src = document.getElementById("fiche-source");
+    if (!src) {
+      src = document.createElement("p");
+      src.id = "fiche-source";
+      src.className = "petit texte-doux";
+      el("fiche-commune").parentNode.insertAdjacentElement("afterend", src);
+    }
+    src.textContent = "Source : " + captage.source + "." +
+      (captage.typeMesure === "distribuee" ? " Aucune mesure publiée sur le forage lui-même : valeur du réseau qu'il alimente." : "") +
+      (captage.moleculesEstimees ? " Répartition par molécule estimée (seule la somme des 20 PFAS est publiée)." : "");
     el("fiche-badge").innerHTML = Commun.badgeNiveau(res.niveauSortie, false);
     el("fiche-somme").textContent = Fmt.concentration(res.sommeSortie) + " µg/L";
     el("fiche-population").textContent = Fmt.entier(captage.populationDesservie) + " hab.";

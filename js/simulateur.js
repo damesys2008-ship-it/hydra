@@ -140,6 +140,7 @@ var Simulateur = (function () {
 
     // Tuile 4 : délai de mise en service
     var derniere = c.historique[c.historique.length - 1].date;
+    if (typeof DATE_REFERENCE !== "undefined" && DATE_REFERENCE > derniere) { derniere = DATE_REFERENCE; }
     el("t-delai").textContent = actif ? String(res.delaiMois) : "–";
     el("t-delai-unite").textContent = actif ? " mois" : "";
     el("t-delai-detail").textContent = actif

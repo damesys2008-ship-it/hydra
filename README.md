@@ -2,7 +2,7 @@
 
 Hydra est un prototype d'outil de pilotage de la qualité de l'eau potable : 30 captages, une nappe contaminée aux PFAS, une seule interface pour voir, comparer et décider.
 On y suit la conformité du territoire, on compare quatre traitements (charbon actif, résine, Bouclier PFAS, nanofiltration) et on simule leur déploiement.
-Prototype de hackathon : données fictives, sauf 4 mesures réelles du captage pilote (Montabuzard).
+Prototype de hackathon. Concentrations PFAS : mesures officielles du contrôle sanitaire ARS (API Hub'Eau, octobre 2026). Captage pilote : Les Hautes Bordes (Semoy), fermé depuis décembre 2023. Volumes et certaines positions : approximatifs.
 
 ## Lancement
 
@@ -17,7 +17,7 @@ Aucune installation, aucun framework, aucun build. Deux bibliothèques sont char
 |---|---|
 | `index.html` | **Vue d'ensemble** : 5 indicateurs du territoire, mini-carte, captages à traiter en priorité, recommandation. |
 | `carte.html` | **Carte des captages** : carte en grand, filtres (niveau, commune, usines), liste synchronisée, résumé du captage choisi. |
-| `captage.html?id=8` | **Fiche d'un captage** : évolution sur 24 mois, composition par molécule, tableau des 10 molécules. Sans `id` valide : captage pilote. |
+| `captage.html?id=11` | **Fiche d'un captage** : mesures officielles et source, composition par molécule, tableau des 10 molécules. Sans `id` valide : captage pilote. |
 | `simulateur.html?id=8` | **Simulateur** : traitement, part du débit, 6 résultats, comparatif des 4 traitements, déploiements actifs. |
 | `methode.html` | **Méthode et hypothèses** : contexte réglementaire, mesures réelles, règles de calcul, hypothèses. |
 
@@ -35,7 +35,7 @@ hydra/
 └── js/
     ├── data-traitements.js  seuils et 4 traitements : abattements, coûts, délais, déchets
     ├── calculs.js           fonctions pures : abattement, mélange, coûts, conformité, KPI
-    ├── data-captages.js     les 30 captages et leurs données fictives
+    ├── data-captages.js     les 30 captages, leurs mesures officielles et leurs sources
     ├── etat.js              état partagé entre les pages (Etat.lire / ecrire / reinitialiser)
     ├── commun.js            en-tête, navigation, pied de page, icônes SVG, utilitaires
     ├── carte.js             module carte Leaflet réutilisable (mini-carte et carte complète)
@@ -57,7 +57,7 @@ Chaque page ne charge que les scripts dont elle a besoin. Ordre de chargement : 
 - **Impact facture** = somme des coûts ÷ 16 000 000 m³ vendus ; × 120 m³ pour un foyer.
 - **Déchets** : pour la nanofiltration, le concentrat vaut 15 % du volume traité ; une unité Elixir en détruit 1 200 m³ par an. Le nombre d'unités nécessaires montre que la destruction sur site est irréaliste.
 
-Valeurs de contrôle sur le captage pilote à 100 % du débit : brut 0,3273 µg/L · charbon seul 0,1048 (non conforme de justesse) · résine 0,0321 · nanofiltration 0,0244 · Bouclier PFAS 0,0172 µg/L.
+Valeurs de contrôle sur le captage pilote (Hautes Bordes, Semoy) à 100 % du débit : brut 0,3273 µg/L · charbon seul 0,1048 (non conforme de justesse) · résine 0,0321 · nanofiltration 0,0244 · Bouclier PFAS 0,0172 µg/L.
 
 ## Charte graphique
 

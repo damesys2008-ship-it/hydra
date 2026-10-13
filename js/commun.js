@@ -170,7 +170,7 @@ var Commun = (function () {
         '<nav class="nav" id="navigation" aria-label="Navigation principale">' + liens + '</nav>' +
       '</div>' +
     '</header>' +
-    '<div class="bandeau-proto" role="note">Prototype de hackathon — données fictives, sauf 4 mesures réelles du captage pilote</div>';
+    '<div class="bandeau-proto" role="note">Prototype de hackathon — mesures PFAS officielles (ARS, Hub\'Eau) · volumes et positions approximatifs</div>';
   }
 
   function construirePied() {

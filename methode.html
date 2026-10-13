@@ -30,7 +30,8 @@
         <p class="overline">Sur cette page</p>
         <ul>
           <li><a href="#contexte">Contexte réglementaire</a></li>
-          <li><a href="#mesures">Mesures réelles du captage pilote</a></li>
+          <li><a href="#mesures">Mesures du captage des Hautes Bordes</a></li>
+          <li><a href="#sources">Sources des données</a></li>
           <li><a href="#calculs">Règles de calcul</a></li>
           <li><a href="#hypotheses">Hypothèses de traitement</a></li>
           <li><a href="#niveaux">Niveaux de qualité</a></li>
@@ -56,10 +57,29 @@
       </section>
 
       <section class="cadre" id="mesures" aria-labelledby="t-mesures">
-        <h2 id="t-mesures">Mesures réelles du captage pilote</h2>
-        <p>Ce sont les seules données réelles de l'application, fournies par le sujet. Elles concernent le captage pilote
-          (Montabuzard) et sont exprimées en µg/L. Les 10 autres PFAS réglementés sont sous le seuil de détection.</p>
+        <h2 id="t-mesures">Mesures du captage des Hautes Bordes (Semoy)</h2>
+        <p>Mesures détaillées fournies par le sujet (Veolia en novembre et décembre 2023, ARS en janvier 2024), en µg/L,
+          sur l'eau brute. Les dates et les acteurs correspondent à l'alerte sur le captage des Hautes Bordes, fermé le
+          26 décembre 2023 : Semoy est depuis alimentée par les ressources d'Orléans. Les 10 autres PFAS réglementés
+          sont sous le seuil de détection.</p>
         <div class="tableau-conteneur"><table class="tableau" id="table-mesures"></table></div>
+      </section>
+
+      <section class="cadre" id="sources" aria-labelledby="t-sources">
+        <h2 id="t-sources">Sources des données</h2>
+        <p>Toutes les concentrations affichées sont des mesures officielles du contrôle sanitaire de l'ARS Centre-Val de Loire,
+          consultées sur l'API publique Hub'Eau le 13 octobre 2026.</p>
+        <ul class="liste-puces">
+          <li><strong>Eau brute</strong> (forage, avant traitement) quand une mesure est publiée pour le forage : Chanteau,
+            L'Oiselière 5 et 6, et les Hautes Bordes (mesures du sujet).</li>
+          <li><strong>Eau distribuée</strong> (robinet) dans les autres cas : le captage prend la valeur du réseau de
+            distribution de sa commune. La source exacte est indiquée sur chaque fiche.</li>
+          <li>« &lt; 0,001 µg/L » (sous le seuil de détection) compte pour 0. Les résultats « &lt; 0,028 », « &lt; 0,029 »
+            ou « &lt; 0,100 » sont écartés : le seuil du laboratoire est trop haut pour conclure.</li>
+          <li>Deux prélèvements le même jour sur le même réseau : la valeur la plus haute est retenue.</li>
+        </ul>
+        <p>Point de vigilance : le réseau d'Ingré Montabuzard est à 0,063 µg/L (22 avril 2026), soit 63 % de la limite.
+          En eau brute, un forage d'Ingré atteignait 0,070 à 0,073 µg/L fin 2024.</p>
       </section>
 
       <section class="cadre" id="calculs" aria-labelledby="t-calculs">
@@ -121,14 +141,16 @@
       <section class="cadre" id="limites" aria-labelledby="t-limites">
         <h2 id="t-limites">Limites du prototype</h2>
         <ul class="liste-puces">
-          <li>Les données sont fictives, sauf les 4 mesures réelles du captage pilote.</li>
-          <li>Les positions des captages et des usines sont approximatives.</li>
+          <li>Les concentrations sont réelles, mais pour la plupart des captages il s'agit de l'eau distribuée par le réseau
+            qu'ils alimentent, et non d'une mesure sur le forage lui-même.</li>
+          <li>Les volumes annuels (et donc la population desservie) sont des estimations : aucune donnée publique par captage.</li>
+          <li>Les communes et positions sont confirmées pour Les Hautes Bordes, Montabuzard, Les Varennes, Les Plantes, Chanteau,
+            Marigny, Échelette, Grainloup et L'Oiselière ; elles restent approximatives pour les autres captages.</li>
+          <li>Seule la somme des 20 PFAS est publiée pour les 29 autres captages : leur répartition par molécule reprend
+            le profil mesuré aux Hautes Bordes. C'est une estimation.</li>
           <li>Les taux d'abattement, les coûts et les délais sont des ordres de grandeur indicatifs, pas des devis.</li>
-          <li>Les 29 autres captages reprennent le profil de molécules du captage pilote : ce n'est pas le cas dans la réalité.</li>
-          <li>L'historique est reconstitué ; il ne tient pas compte des variations saisonnières ni des travaux.</li>
         </ul>
-        <p>En production, les données viendraient des systèmes de supervision des exploitants et des analyses de l'ARS
-          (API publique Hub'Eau).</p>
+        <p>En production, les données seraient lues en direct sur l'API Hub'Eau et complétées par la supervision des exploitants.</p>
       </section>
 
     </div>

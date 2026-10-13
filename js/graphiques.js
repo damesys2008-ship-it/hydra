@@ -82,7 +82,7 @@ var Graphiques = (function () {
       ctx.font = "600 12px IBM Plex Sans, system-ui, sans-serif";
       ctx.fillStyle = couleur("--bleu-nuit");
       ctx.textAlign = "right";
-      ctx.fillText("Mesures réelles (sujet)", xMin + 12, Math.max(chart.chartArea.top + 14, yMin - 16));
+      ctx.fillText("Mesures officielles", xMin + 12, Math.max(chart.chartArea.top + 14, yMin - 16));
       ctx.restore();
     }
   };
@@ -126,7 +126,7 @@ var Graphiques = (function () {
 
     if (nbReels > 0) {
       jeux.push({
-        label: "Mesures réelles (sujet)",
+        label: "Mesures officielles (ARS)",
         estMesuresReelles: true,
         data: serie.reels,
         showLine: false,
@@ -139,7 +139,7 @@ var Graphiques = (function () {
       grapheEvolution = new Chart(document.getElementById("graph-evolution"), {
         type: "line",
         data: { labels: serie.labels, datasets: jeux },
-        plugins: [pluginAnnotation],
+        plugins: [],  // toutes les mesures sont réelles : plus besoin d'annotation
         options: {
           responsive: true, maintainAspectRatio: false,
           animation: Commun.reduireMouvement ? false : { duration: 500 },
