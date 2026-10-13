@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRA — page « Fiche captage » (js/page-captage.js)
+   HYDRO — page « Fiche captage » (js/page-captage.js)
    Le captage vient de l'URL (captage.html?id=8). Sans identifiant
    valide, on affiche le captage pilote. Si un traitement a été
    déployé sur ce captage, les graphiques montrent l'avant / après.
@@ -70,7 +70,7 @@
     var res = calculerResultatSimulation(captage, idTraitement, part);
     var avecTraitement = !!deploiement;
 
-    document.title = captage.nom + " — Fiche captage — Hydra";
+    document.title = captage.nom + " — Fiche captage — Hydro";
     el("fiche-nom").textContent = captage.nom;
     el("fiche-commune").textContent = captage.commune +
       (captage.ferme ? " · captage fermé depuis décembre 2023" : "") +

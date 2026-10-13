@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRA — page « Carte » (js/page-carte.js)
+   HYDRO — page « Carte » (js/page-carte.js)
    Carte complète + filtres (niveau, commune, usines) + liste
    synchronisée + petit panneau de résumé du captage choisi.
    ============================================================ */

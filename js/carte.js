@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRA — carte des captages (js/carte.js)
+   HYDRO — carte des captages (js/carte.js)
    ------------------------------------------------------------
    Module réutilisable : la page d'accueil l'utilise pour une
    mini-carte non interactive, la page Carte pour la carte
@@ -110,7 +110,7 @@ var Carte = (function () {
         riseOnHover: interactif
       }).addTo(carte);
       if (interactif) {
-        m.bindTooltip("", { direction: "top", offset: [0, -14], className: "infobulle-hydra" });
+        m.bindTooltip("", { direction: "top", offset: [0, -14], className: "infobulle-hydro" });
         m.on("click", function () { if (options.surClic) { options.surClic(c.id); } });
       }
       marqueurs[c.id] = m;
@@ -129,7 +129,7 @@ var Carte = (function () {
       });
       if (interactif) {
         m.bindTooltip("<strong>" + u.nom + "</strong><br>Usine de traitement",
-                      { direction: "top", offset: [0, -12], className: "infobulle-hydra" });
+                      { direction: "top", offset: [0, -12], className: "infobulle-hydro" });
       }
       m.addTo(calqueUsines);
     });

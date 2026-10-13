@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRA — éléments communs à toutes les pages (js/commun.js)
+   HYDRO — éléments communs à toutes les pages (js/commun.js)
    ------------------------------------------------------------
    - icônes SVG (trait fin, dessinées à la main, sans librairie) ;
    - en-tête, navigation (avec menu burger) et pied de page, injectés
@@ -158,9 +158,9 @@ var Commun = (function () {
 
     return '<header class="entete" id="entete">' +
       '<div class="conteneur entete-interieur">' +
-        '<a class="logo" href="index.html" aria-label="Hydra, retour à la vue d\'ensemble">' +
+        '<a class="logo" href="index.html" aria-label="Hydro, retour à la vue d\'ensemble">' +
           icone("goutte", "logo-icone") +
-          '<span class="logo-texte"><span class="logo-nom">Hydra</span>' +
+          '<span class="logo-texte"><span class="logo-nom">Hydro</span>' +
           '<span class="logo-sous">Pilotage PFAS<span class="logo-sep"> — </span>' +
           '<span class="logo-lieu">Orléans Métropole</span></span></span>' +
         '</a>' +
@@ -175,7 +175,7 @@ var Commun = (function () {
 
   function construirePied() {
     return '<footer class="pied"><div class="conteneur pied-interieur">' +
-      '<p><strong>Hydra</strong> — Prototype d\'hypervision réalisé lors du Hackathon Hussar Academy, Orléans, octobre 2026. ' +
+      '<p><strong>Hydro</strong> — Prototype d\'hypervision réalisé lors du Hackathon Hussar Academy, Orléans, octobre 2026. ' +
       'Limite réglementaire : 0,10 µg/L (somme de 20 PFAS). Recommandation HCSP : 0,02 µg/L (somme de 4 PFAS). ' +
       'Taux d\'abattement et coûts : ordres de grandeur indicatifs.</p>' +
       '<button type="button" class="bouton bouton-secondaire bouton-petit" id="btn-reinitialiser">' +

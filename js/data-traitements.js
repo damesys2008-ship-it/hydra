@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRA — données des traitements (js/data-traitements.js)
+   HYDRO — données des traitements (js/data-traitements.js)
    ------------------------------------------------------------
    Ce fichier décrit les quatre technologies de traitement que
    le simulateur peut déployer sur un captage : leurs taux

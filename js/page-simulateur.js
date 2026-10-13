@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRA — page « Simulateur » (js/page-simulateur.js)
+   HYDRO — page « Simulateur » (js/page-simulateur.js)
    Orchestre le simulateur :
      - le « brouillon » (traitement + part en cours de réglage) vit
        dans cette page ;
@@ -56,7 +56,7 @@
     });
 
     el("sim-cible").textContent = captage.nom;
-    document.title = "Simulateur — " + captage.nom + " — Hydra";
+    document.title = "Simulateur — " + captage.nom + " — Hydro";
 
     Simulateur.maj({
       captage: captage,

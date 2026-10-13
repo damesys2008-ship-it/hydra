@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRA — pages.css
+   HYDRO — pages.css
    Mises en page propres à chaque page. Les composants communs
    (boutons, cartes, badges, tableaux…) sont dans base.css.
    ============================================================ */
@@ -87,12 +87,12 @@
 .tuiles-claires { filter: grayscale(0.85) brightness(1.08) contrast(0.88); }
 .leaflet-container { font-family: var(--police); }
 
-.infobulle-hydra {
+.infobulle-hydro {
   background: var(--surface); color: var(--texte); border: 1px solid var(--bordure);
   border-radius: var(--rayon-bouton); box-shadow: 0 4px 12px rgba(11, 37, 69, 0.15);
   font: 400 14px/1.4 var(--police); padding: var(--esp-8) var(--esp-12);
 }
-.infobulle-hydra::before { display: none; }
+.infobulle-hydro::before { display: none; }
 
 /* Marqueur de captage : point coloré + pictogramme de niveau + anneau */
 .marqueur-icone, .usine-icone { background: none; border: 0; }

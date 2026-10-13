@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRA — graphiques de la fiche captage (js/graphiques.js)
+   HYDRO — graphiques de la fiche captage (js/graphiques.js)
    ------------------------------------------------------------
    Dessine deux graphiques avec Chart.js :
      1. l'évolution de la somme des 20 PFAS (courbe) ;

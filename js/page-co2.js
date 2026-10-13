@@ -1,15 +1,15 @@
 /* ============================================================
-   HYDRA — page « CO₂ évité » (js/page-co2.js)
+   HYDRO — page « CO₂ évité » (js/page-co2.js)
    Lit les hypothèses (data-co2.js), calcule avec calculs-co2.js,
    puis affiche le compteur, les équivalences et le graphique.
    Les trois curseurs sont mémorisés dans sessionStorage, sous une
-   clé à part (« hydra-co2 ») : l'état des autres pages n'est
+   clé à part (« hydro-co2 ») : l'état des autres pages n'est
    jamais touché.
    ============================================================ */
 
 (function () {
 
-  var CLE_STOCKAGE = "hydra-co2";
+  var CLE_STOCKAGE = "hydro-co2";
   var CHART_OK = (typeof Chart !== "undefined");
 
   var valeurs = null;      // toutes les hypothèses, en valeurs utilisées

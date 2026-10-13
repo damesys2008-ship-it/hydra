@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRA — page « Vue d'ensemble » (js/page-accueil.js)
+   HYDRO — page « Vue d'ensemble » (js/page-accueil.js)
    Lit les déploiements enregistrés (Etat), calcule le territoire
    (calculs.js) et remplit les KPI, la mini-carte et la liste des
    captages à traiter en priorité.
