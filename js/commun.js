@@ -194,7 +194,10 @@ var Commun = (function () {
       '<div class="conteneur pied-grille">' +
         // Colonne 1 : identité
         '<div class="pied-marque">' +
-          '<a class="pied-logo" href="index.html">' + '<img class="logo-image" src="assets/o-pure-goutte.png" alt="" width="40" height="40">' + '<span>O-Pure</span></a>' +
+          '<a class="pied-logo" href="index.html" aria-label="O-Pure, retour à la vue d\'ensemble">' +
+            '<img class="logo-image" src="assets/o-pure-goutte.png" alt="" width="40" height="40">' +
+            '<img class="pied-logo-texte" src="assets/o-pure-texte.png" alt="O-Pure" width="544" height="137">' +
+          '</a>' +
           '<p>Pilotage PFAS de l\'eau potable d\'Orléans Métropole : état des 30 captages, simulation des traitements et de leur coût.</p>' +
           '<p class="pied-petit">Prototype réalisé lors du Hackathon Hussar Academy, Orléans, octobre 2026.</p>' +
         '</div>' +
