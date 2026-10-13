@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRO — pages.css
+   O-PURE — pages.css
    Mises en page propres à chaque page. Les composants communs
    (boutons, cartes, badges, tableaux…) sont dans base.css.
    ============================================================ */
@@ -87,12 +87,12 @@
 .tuiles-claires { filter: grayscale(0.85) brightness(1.08) contrast(0.88); }
 .leaflet-container { font-family: var(--police); }
 
-.infobulle-hydro {
+.infobulle-opure {
   background: var(--surface); color: var(--texte); border: 1px solid var(--bordure);
   border-radius: var(--rayon-bouton); box-shadow: 0 4px 12px rgba(11, 37, 69, 0.15);
   font: 400 14px/1.4 var(--police); padding: var(--esp-8) var(--esp-12);
 }
-.infobulle-hydro::before { display: none; }
+.infobulle-opure::before { display: none; }
 
 /* Marqueur de captage : point coloré + pictogramme de niveau + anneau */
 .marqueur-icone, .usine-icone { background: none; border: 0; }
@@ -394,4 +394,12 @@
   .logo-lieu { display: block; }
   .entete-interieur .logo-sous { font-size: 12px; line-height: 1.3; }
   .entete-interieur .logo-nom { font-size: 20px; }
+}
+
+/* Logo O-Pure : goutte en image + nom dans le bleu du logo (#034A71) */
+.logo-image { width: 40px; height: 40px; flex: none; object-fit: contain; }
+.logo-nom { color: #034A71; }
+.pied-logo .logo-image { width: 32px; height: 32px; }
+@media (max-width: 600px) {
+  .entete-interieur .logo-image { width: 34px; height: 34px; }
 }

@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRO — page « Carte » (js/page-carte.js)
+   O-PURE — page « Carte » (js/page-carte.js)
    Carte complète + filtres (niveau, commune, usines) + liste
    synchronisée + petit panneau de résumé du captage choisi.
    ============================================================ */

@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRO — hypothèses du calcul CO₂ évité (js/data-co2.js)
+   O-PURE — hypothèses du calcul CO₂ évité (js/data-co2.js)
    ------------------------------------------------------------
    Compare, pour un même volume de déchets concentrés en PFAS :
      - la filière classique : transport par camion-citerne vers un

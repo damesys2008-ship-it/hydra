@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRO — page « Méthode » (js/page-methode.js)
+   O-PURE — page « Méthode » (js/page-methode.js)
    Les tableaux sont générés à partir des fichiers de données
    (data-traitements.js, data-captages.js) : la page ne peut donc
    pas se contredire avec le code de calcul.

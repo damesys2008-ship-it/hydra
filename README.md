@@ -1,6 +1,6 @@
-# Hydro — pilotage PFAS pour Orléans Métropole
+# O-Pure — pilotage PFAS pour Orléans Métropole
 
-Hydro est un prototype d'outil de pilotage de la qualité de l'eau potable : 30 captages, une nappe contaminée aux PFAS, une seule interface pour voir, comparer et décider.
+O-Pure est un prototype d'outil de pilotage de la qualité de l'eau potable : 30 captages, une nappe contaminée aux PFAS, une seule interface pour voir, comparer et décider.
 On y suit la conformité du territoire, on compare quatre traitements (charbon actif, résine, Bouclier PFAS, nanofiltration) et on simule leur déploiement.
 Prototype de hackathon. Concentrations PFAS : mesures officielles du contrôle sanitaire ARS (API Hub'Eau, octobre 2026). Captage pilote : Les Hautes Bordes (Semoy), fermé depuis décembre 2023. Volumes et certaines positions : approximatifs.
 
@@ -26,7 +26,7 @@ Les déploiements simulés sont conservés d'une page à l'autre dans `sessionSt
 ## Structure des fichiers
 
 ```
-hydro/
+o-pure/
 ├── index.html  carte.html  captage.html  simulateur.html  methode.html
 ├── README.md
 ├── css/
@@ -88,7 +88,7 @@ elixir_deplacements   = déplacements × kmParDéplacement × facteurConvoi / 10
 
 Avec les hypothèses par défaut : filière classique 354,0 tCO₂e/an (transport 54,0 + incinération 300,0), filière Elixir 15,3 tCO₂e/an (électricité 15,0 + déplacements 0,3), soit **338,7 tCO₂e évitées par an** (environ 95,7 %), environ 1 609 tCO₂e cumulées du 01/01/2027 au 30/09/2031, 48 camions-citernes évités par an et environ 1,69 million de km en voiture équivalents.
 
-**Hypothèses** : toutes dans `HYPOTHESES_CO2` (`js/data-co2.js`), chacune avec sa valeur, son unité, son libellé et sa justification. Trois sont réglables en direct dans la page (volume, distance de l'incinérateur, émissions de l'incinération) ; les valeurs choisies sont gardées dans `sessionStorage` sous la clé `hydro-co2`, séparée de l'état du reste de l'application.
+**Hypothèses** : toutes dans `HYPOTHESES_CO2` (`js/data-co2.js`), chacune avec sa valeur, son unité, son libellé et sa justification. Trois sont réglables en direct dans la page (volume, distance de l'incinérateur, émissions de l'incinération) ; les valeurs choisies sont gardées dans `sessionStorage` sous la clé `opure-co2`, séparée de l'état du reste de l'application.
 
 **Lecture prudente** : seul le trajet aller du camion est compté (le retour à vide ne l'est pas), donc le CO₂ évité est volontairement sous-estimé. Ce sont des ordres de grandeur, à confirmer avec la Base Empreinte de l'ADEME et les exploitants, et le calcul ne porte que sur la destruction des déchets concentrés, pas sur l'ensemble du traitement de l'eau.
 

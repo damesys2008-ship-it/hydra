@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRO — logique de calcul (js/calculs.js)
+   O-PURE — logique de calcul (js/calculs.js)
    ------------------------------------------------------------
    Toutes les fonctions de ce fichier sont PURES : elles ne
    touchent jamais au DOM, ne lisent et n'écrivent aucune

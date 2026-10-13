@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRO — éléments communs à toutes les pages (js/commun.js)
+   O-PURE — éléments communs à toutes les pages (js/commun.js)
    ------------------------------------------------------------
    - icônes SVG (trait fin, dessinées à la main, sans librairie) ;
    - en-tête, navigation (avec menu burger) et pied de page, injectés
@@ -151,9 +151,9 @@ var Commun = (function () {
 
     return '<header class="entete" id="entete">' +
       '<div class="conteneur entete-interieur">' +
-        '<a class="logo" href="index.html" aria-label="Hydro, retour à la vue d\'ensemble">' +
-          icone("goutte", "logo-icone") +
-          '<span class="logo-texte"><span class="logo-nom">Hydro</span>' +
+        '<a class="logo" href="index.html" aria-label="O-Pure, retour à la vue d\'ensemble">' +
+          '<img class="logo-image" src="assets/o-pure-goutte.png" alt="" width="40" height="40">' +
+          '<span class="logo-texte"><span class="logo-nom">O-Pure</span>' +
           '<span class="logo-sous">Pilotage PFAS<span class="logo-sep"> — </span>' +
           '<span class="logo-lieu">Orléans Métropole</span></span></span>' +
         '</a>' +
@@ -194,7 +194,7 @@ var Commun = (function () {
       '<div class="conteneur pied-grille">' +
         // Colonne 1 : identité
         '<div class="pied-marque">' +
-          '<a class="pied-logo" href="index.html">' + icone("goutte", "logo-icone") + '<span>Hydro</span></a>' +
+          '<a class="pied-logo" href="index.html">' + '<img class="logo-image" src="assets/o-pure-goutte.png" alt="" width="40" height="40">' + '<span>O-Pure</span></a>' +
           '<p>Pilotage PFAS de l\'eau potable d\'Orléans Métropole : état des 30 captages, simulation des traitements et de leur coût.</p>' +
           '<p class="pied-petit">Prototype réalisé lors du Hackathon Hussar Academy, Orléans, octobre 2026.</p>' +
         '</div>' +
@@ -221,7 +221,7 @@ var Commun = (function () {
       '</div>' +
       // Barre du bas
       '<div class="pied-bas"><div class="conteneur pied-bas-interieur">' +
-        '<p>© 2026 Hydro · Mesures PFAS officielles (ARS) · Volumes, positions et coûts indicatifs.</p>' +
+        '<p>© 2026 O-Pure · Mesures PFAS officielles (ARS) · Volumes, positions et coûts indicatifs.</p>' +
         '<div class="pied-actions">' +
           '<button type="button" class="bouton bouton-secondaire bouton-petit" id="btn-reinitialiser">' +
             icone("reinit", "icone-petite") + 'Réinitialiser la démo</button>' +

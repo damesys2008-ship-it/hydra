@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRO — état partagé entre les pages (js/etat.js)
+   O-PURE — état partagé entre les pages (js/etat.js)
    ------------------------------------------------------------
    Chaque page HTML est un document séparé : pour que les
    déploiements simulés survivent à un changement de page, on les
@@ -19,8 +19,8 @@
 
 var Etat = (function () {
 
-  var CLE = "hydro-etat";
-  var PREFIXE_NOM = "hydro:";
+  var CLE = "opure-etat";
+  var PREFIXE_NOM = "opure:";
   var enMemoire = null;
 
   /* État vide : aucun déploiement, captage pilote. */

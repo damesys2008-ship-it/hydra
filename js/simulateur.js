@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRO — panneau de simulation (js/simulateur.js)
+   O-PURE — panneau de simulation (js/simulateur.js)
    ------------------------------------------------------------
    Gère les contrôles (choix du traitement, curseur, boutons) et
    l'affichage des 6 tuiles de résultat de la page Simulateur.

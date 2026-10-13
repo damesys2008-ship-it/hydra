@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRO — données des captages (js/data-captages.js)
+   O-PURE — données des captages (js/data-captages.js)
    ------------------------------------------------------------
    DONNÉES RÉELLES — mise à jour du 13/10/2026.
    Toutes les concentrations (somme des 20 PFAS, en µg/L) viennent :

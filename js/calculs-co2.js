@@ -1,5 +1,5 @@
 /* ============================================================
-   HYDRO — calculs du CO₂ évité (js/calculs-co2.js)
+   O-PURE — calculs du CO₂ évité (js/calculs-co2.js)
    ------------------------------------------------------------
    Fonctions PURES : pas d'accès au DOM, pas d'état global. Elles
    prennent un objet de valeurs (voir valeursParDefautCO2) et
