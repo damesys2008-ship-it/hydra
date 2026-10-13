@@ -143,14 +143,7 @@ var Commun = (function () {
 
   function construireEntete(pageActive) {
     var dernier = Etat.lire().dernierCaptage;
-    var pages = [
-      { id: "accueil",    href: "index.html",                       libelle: "Vue d'ensemble" },
-      { id: "carte",      href: "carte.html",                       libelle: "Carte" },
-      { id: "captage",    href: lienCaptage("captage", dernier),    libelle: "Fiche captage" },
-      { id: "simulateur", href: lienCaptage("simulateur", dernier), libelle: "Simulateur" },
-      { id: "methode",    href: "methode.html",                     libelle: "Méthode" },
-      { id: "co2",        href: "co2.html",                         libelle: "CO₂ évité" }
-    ];
+    var pages = listePages(dernier);
 
     var liens = pages.map(function (p) {
       return '<a href="' + p.href + '" data-lien="' + p.id + '"' + (p.id === pageActive ? ' aria-current="page"' : '') + '>' + p.libelle + '</a>';
@@ -173,15 +166,71 @@ var Commun = (function () {
     '<div class="bandeau-proto" role="note">Prototype de hackathon — mesures PFAS officielles (ARS, Hub\'Eau) · volumes et positions approximatifs</div>';
   }
 
-  function construirePied() {
-    return '<footer class="pied"><div class="conteneur pied-interieur">' +
-      '<p><strong>Hydro</strong> — Prototype d\'hypervision réalisé lors du Hackathon Hussar Academy, Orléans, octobre 2026. ' +
-      'Limite réglementaire : 0,10 µg/L (somme de 20 PFAS). Recommandation HCSP : 0,02 µg/L (somme de 4 PFAS). ' +
-      'Taux d\'abattement et coûts : ordres de grandeur indicatifs.</p>' +
-      '<button type="button" class="bouton bouton-secondaire bouton-petit" id="btn-reinitialiser">' +
-        icone("reinit", "icone-petite") + 'Réinitialiser la démo</button>' +
-    '</div></footer>';
+  /* Les 6 pages du site, utilisées par la navigation ET le pied de page. */
+  function listePages(dernier) {
+    return [
+      { id: "accueil",    href: "index.html",                       libelle: "Vue d'ensemble" },
+      { id: "carte",      href: "carte.html",                       libelle: "Carte" },
+      { id: "captage",    href: lienCaptage("captage", dernier),    libelle: "Fiche captage" },
+      { id: "simulateur", href: lienCaptage("simulateur", dernier), libelle: "Simulateur" },
+      { id: "methode",    href: "methode.html",                     libelle: "Méthode" },
+      { id: "co2",        href: "co2.html",                         libelle: "CO₂ évité" }
+    ];
   }
+
+  function lienExterne(href, texte) {
+    return '<li><a href="' + href + '" target="_blank" rel="noopener">' + texte +
+           '<span class="sr-only"> (nouvel onglet)</span></a></li>';
+  }
+
+  function construirePied(pageActive) {
+    var pages = listePages(Etat.lire().dernierCaptage);
+    var navigation = pages.map(function (p) {
+      return '<li><a href="' + p.href + '" data-lien="' + p.id + '"' +
+             (p.id === pageActive ? ' aria-current="page"' : '') + '>' + p.libelle + '</a></li>';
+    }).join("");
+
+    return '<footer class="pied">' +
+      '<div class="conteneur pied-grille">' +
+        // Colonne 1 : identité
+        '<div class="pied-marque">' +
+          '<a class="pied-logo" href="index.html">' + icone("goutte", "logo-icone") + '<span>Hydro</span></a>' +
+          '<p>Pilotage PFAS de l\'eau potable d\'Orléans Métropole : état des 30 captages, simulation des traitements et de leur coût.</p>' +
+          '<p class="pied-petit">Prototype réalisé lors du Hackathon Hussar Academy, Orléans, octobre 2026.</p>' +
+        '</div>' +
+        // Colonne 2 : navigation
+        '<nav class="pied-colonne" aria-label="Plan du site">' +
+          '<h2>Navigation</h2><ul>' + navigation + '</ul>' +
+        '</nav>' +
+        // Colonne 3 : sources
+        '<div class="pied-colonne">' +
+          '<h2>Données et sources</h2><ul>' +
+            lienExterne("https://hubeau.eaufrance.fr/page/api-qualite-eau-potable", "Hub\'Eau : qualité de l\'eau potable") +
+            lienExterne("https://www.centre-val-de-loire.ars.sante.fr/pfas-generalites-et-surveillance-dans-leau-de-consommation", "ARS Centre-Val de Loire : PFAS") +
+            lienExterne("https://www.orleans-metropole.fr/actualites/detail/qualite-de-leau-potable-alteree-a-semoy-orleans-metropole-repond-a-lurgence", "Orléans Métropole : captage de Semoy") +
+            '<li><a href="methode.html#sources">Nos règles de lecture des données</a></li>' +
+          '</ul>' +
+        '</div>' +
+        // Colonne 4 : repères réglementaires
+        '<div class="pied-colonne">' +
+          '<h2>Repères</h2><ul class="pied-reperes">' +
+            '<li><strong>0,10 µg/L</strong> Limite légale, somme de 20 PFAS, depuis le 1er janvier 2026</li>' +
+            '<li><strong>0,02 µg/L</strong> Recommandation HCSP, somme de 4 PFAS</li>' +
+          '</ul>' +
+        '</div>' +
+      '</div>' +
+      // Barre du bas
+      '<div class="pied-bas"><div class="conteneur pied-bas-interieur">' +
+        '<p>© 2026 Hydro · Mesures PFAS officielles (ARS) · Volumes, positions et coûts indicatifs.</p>' +
+        '<div class="pied-actions">' +
+          '<button type="button" class="bouton bouton-secondaire bouton-petit" id="btn-reinitialiser">' +
+            icone("reinit", "icone-petite") + 'Réinitialiser la démo</button>' +
+          '<a class="pied-haut" href="#">Haut de page ↑</a>' +
+        '</div>' +
+      '</div></div>' +
+    '</footer>';
+  }
+
 
   /* Met à jour les liens « Fiche captage » et « Simulateur » avec le dernier
      captage consulté (utile quand on change de captage sans recharger). */
@@ -205,7 +254,7 @@ var Commun = (function () {
     var zoneEntete = document.getElementById("entete-site");
     if (zoneEntete) { zoneEntete.innerHTML = construireEntete(pageActive); }
     var zonePied = document.getElementById("pied-site");
-    if (zonePied) { zonePied.innerHTML = construirePied(); }
+    if (zonePied) { zonePied.innerHTML = construirePied(pageActive); }
 
     var burger = document.getElementById("burger");
     var entete = document.getElementById("entete");
