@@ -379,3 +379,17 @@
   .grande-carte { height: 55vh; min-height: 320px; }
   .mini-carte { height: 300px; }
 }
+
+/* En-tête sur téléphone : le burger reste toujours à droite du logo.
+   Le logo peut rétrécir, le burger jamais, et « Orléans Métropole »
+   passe sous « Pilotage PFAS » au lieu de pousser le burger à la ligne. */
+@media (max-width: 960px) {
+  .entete-interieur { gap: var(--esp-12); }
+  .entete-interieur .logo { flex: 1 1 0; min-width: 0; }
+  .entete-interieur .logo-texte { min-width: 0; }
+  .entete-interieur .burger { flex: 0 0 auto; margin-left: auto; }
+}
+@media (max-width: 600px) {
+  .logo-sep { display: none; }
+  .logo-lieu { display: block; }
+}

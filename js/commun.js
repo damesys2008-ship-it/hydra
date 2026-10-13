@@ -161,7 +161,8 @@ var Commun = (function () {
         '<a class="logo" href="index.html" aria-label="Hydra, retour à la vue d\'ensemble">' +
           icone("goutte", "logo-icone") +
           '<span class="logo-texte"><span class="logo-nom">Hydra</span>' +
-          '<span class="logo-sous">Pilotage PFAS — Orléans Métropole</span></span>' +
+          '<span class="logo-sous">Pilotage PFAS<span class="logo-sep"> — </span>' +
+          '<span class="logo-lieu">Orléans Métropole</span></span></span>' +
         '</a>' +
         '<button type="button" class="burger" id="burger" aria-expanded="false" aria-controls="navigation" aria-label="Ouvrir le menu">' +
           icone("menu") +
