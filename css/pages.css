@@ -400,13 +400,8 @@
 .logo-image { width: 40px; height: 40px; flex: none; object-fit: contain; }
 .logo-nom { color: #034A71; }
 .pied-logo .logo-image { width: 32px; height: 32px; }
-/* Pied de page : goutte + texte « O-Pure » du logo, sur une plaque claire
-   (le bleu foncé du texte serait illisible directement sur le fond sombre). */
-.pied-logo {
-  background: var(--blanc); border-radius: var(--rayon-bouton);
-  padding: var(--esp-8) var(--esp-12); gap: var(--esp-8);
-}
-.pied-logo:hover { text-decoration: none; box-shadow: 0 0 0 2px var(--bleu-clair); }
+/* Pied de page : goutte + texte « O-Pure » du logo, sans plaque (pied de page blanc) */
+.pied-logo:hover { text-decoration: none; opacity: 0.85; }
 .pied-logo-texte { height: 26px; width: auto; display: block; }
 @media (max-width: 600px) {
   .entete-interieur .logo-image { width: 34px; height: 34px; }

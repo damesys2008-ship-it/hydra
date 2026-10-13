@@ -170,37 +170,35 @@ img, svg { display: block; max-width: 100%; }
 .principal { padding-top: var(--esp-32); padding-bottom: var(--esp-64); min-height: 60vh; }
 
 /* Pied de page : 4 colonnes (identité, navigation, sources, repères) + barre du bas */
-.pied { background: var(--bleu-nuit); color: #DCEBF7; font-size: 14px; }
+.pied { background: var(--blanc); color: var(--texte); font-size: 14px; border-top: 3px solid var(--action); }
 .pied-grille {
   display: grid; grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
   gap: var(--esp-32); padding-top: var(--esp-48); padding-bottom: var(--esp-32);
 }
 .pied h2 {
   font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--bleu-clair); margin: 0 0 var(--esp-12);
+  color: var(--action-actif); margin: 0 0 var(--esp-12);
 }
 .pied ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--esp-4); }
-.pied a { color: #DCEBF7; text-decoration: none; transition: color var(--duree); }
-.pied a:hover { color: var(--blanc); text-decoration: underline; text-underline-offset: 3px; }
+.pied a { color: var(--texte); text-decoration: none; transition: color var(--duree); }
+.pied a:hover { color: var(--action); text-decoration: underline; text-underline-offset: 3px; }
 .pied-colonne a { display: inline-flex; align-items: center; min-height: 32px; }
-.pied-colonne a[aria-current="page"] { color: var(--blanc); font-weight: 600; }
-.pied-marque p { max-width: 360px; margin: var(--esp-12) 0 0; line-height: 1.5; }
-.pied-logo { display: inline-flex; align-items: center; gap: var(--esp-8); color: var(--blanc) !important; font-size: 20px; font-weight: 700; }
+.pied-colonne a[aria-current="page"] { color: var(--action-actif); font-weight: 600; }
+.pied-marque p { max-width: 360px; margin: var(--esp-12) 0 0; line-height: 1.5; color: var(--texte-doux); }
+.pied-logo { display: inline-flex; align-items: center; gap: var(--esp-8); font-size: 20px; font-weight: 700; }
 .pied-logo .logo-icone { color: var(--bleu-clair); width: 28px; height: 28px; }
-.pied-petit { font-size: 13px; color: var(--bleu-clair); }
-.pied-reperes li { display: flex; flex-direction: column; gap: 2px; padding: var(--esp-8) 0; border-bottom: 1px solid rgba(220, 235, 247, 0.12); line-height: 1.4; }
+.pied-petit { font-size: 13px; }
+.pied-reperes li { display: flex; flex-direction: column; gap: 2px; padding: var(--esp-8) 0; border-bottom: 1px solid var(--bordure); line-height: 1.4; color: var(--texte-doux); }
 .pied-reperes li:last-child { border-bottom: 0; }
-.pied-reperes strong { color: var(--blanc); font-family: var(--police-mono); font-size: 16px; font-weight: 600; }
-.pied-bas { border-top: 1px solid rgba(220, 235, 247, 0.15); }
+.pied-reperes strong { color: var(--bleu-nuit); font-family: var(--police-mono); font-size: 16px; font-weight: 600; }
+.pied-bas { border-top: 1px solid var(--bordure); background: var(--fond); }
 .pied-bas-interieur {
   display: flex; justify-content: space-between; align-items: center; gap: var(--esp-16); flex-wrap: wrap;
   padding-top: var(--esp-16); padding-bottom: var(--esp-16); font-size: 13px;
 }
-.pied-bas p { margin: 0; color: var(--bleu-clair); }
+.pied-bas p { margin: 0; color: var(--texte-doux); }
 .pied-actions { display: flex; align-items: center; gap: var(--esp-16); flex-wrap: wrap; }
-.pied .bouton-secondaire { border-color: #8FC1E3; background: transparent; color: var(--blanc); }
-.pied .bouton-secondaire:hover { background: rgba(255, 255, 255, 0.12); text-decoration: none; }
-.pied :focus-visible { outline-color: var(--bleu-clair); }
+.pied .bouton:hover { text-decoration: none; }
 
 @media (max-width: 960px) {
   .pied-grille { grid-template-columns: repeat(2, minmax(0, 1fr)); }
